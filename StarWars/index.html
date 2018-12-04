@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Star Wars</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css" />
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="assets/js/StarWarsGame.js"></script>
+
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand navbar-dark bg-dark text-white border-bottom">
+            <!-- Create inner div to make left and right items line up properly with content -->
+            <div>
+                <img src="assets/images/275x200StarWars.png" width="60px" height="60px">
+            </div>
+            <div class="m-2">
+                <h3>Pick a fighter</h3>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container bg-white p-0">
+        <div class="gameHeader">
+            <h3 id="mainTitle">Current Number to Guess</h3>
+            <h3 id="currentNbrToGuess"></h3>
+        </div>
+        <div class="gameProgress">
+            <section>
+                <div class="sectionTitle">Game Stats</div>
+                <article>
+                    <p id="gameMessage"></p>
+                    <div id="gameInfo">
+                        <div>Current Guess: <span id="currentGuess"></span></div>
+                        <div>Total Guessed so far: <span id="totalGuessedSoFar"></span></div>
+                        <hr>
+                    </div> <!-- Game Info  -->
+                    <div id="victories">
+                        <p>Number of Wins: <span id="nbrWins">0</span></p>
+                        <p>Number of Losses: <span id="nbrLosses">0</span></p>
+                        <p>Total Played: <span id="totalGames">0</span></p>
+                    </div>
+                </article>
+            </section>
+            <aside>
+                <div class="sectionTitle"> Click Crystal to Guess</div>
+                <div id="crystals">
+                </div>
+            </aside>
+        </div>
+    </main>
+    <script type="text/javascript" src="assets/js/game.js"></script>
+
+</body>
+
+</html>
