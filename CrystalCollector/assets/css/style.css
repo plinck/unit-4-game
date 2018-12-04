@@ -14,16 +14,7 @@ body {
     padding: 0;
 }
 
-header {
-    background-color: #1eb7bd;
-    color: white;
-    margin: 0;
-    padding: 0;
-    border: 1px solid #777777;
-    text-align: center;
-}
-
-.container {
+.main-container {
     display: flex;
     flex-direction: column;
     justify-content: center;

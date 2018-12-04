@@ -1,10 +1,18 @@
 /* **********************************************************************************
  * Class: CrystalCollectorGame
- * Contains all the functionality to do a game
+ * Contains all the functionality to do a game.
+ * The games methods() and properties are contained within this 
  * Note the use of Capitalizing first letter of each word in a class name
  * in a standard practice in most OO languages like C#, C++, Swift,
  * Java, objective-C etc.
  ********************************************************************************** */
+/*
+ * The arrays below are "static" members of this class, but there is no built-in way
+ * to define static properties in Javascript.  The way to get the desired behavior - i.e.
+ * these arrays are the same for all instances the objects -- aka class level -- is to 
+ * deifine them outside the class and refer to tem with static methods in the class
+ */
+let _imageArray = [];
 
 class CrystalCollectorGame {
     // Give default number of missed guesses to 5
@@ -21,6 +29,23 @@ class CrystalCollectorGame {
         this.crystalValues = [0, 0, 0, 0];
         this.currentGuess = 0;
         this.totalGuessedSoFar = 0;
+
+        // Load the crystals
+        this.createImageArray();
+    }
+
+    // Make array static
+    static get imageArray() {
+        return _imageArray;
+    }
+
+    createImageArray() {
+        this.imageArray = [
+            "./assets/images/Crystal1.png",
+            "./assets/images/Crystal2.png",
+            "./assets/images/Crystal3.png",
+            "./assets/images/Crystal4.png"
+        ];
     }
 
     // These change every time the game restarts - 
@@ -71,7 +96,7 @@ class CrystalCollectorGame {
             imageCrystal.addClass("crystal-image");
 
             // Each imageCrystal will be given a src link to the crystal image
-            imageCrystal.attr("src", "http://cdn.playbuzz.com/cdn/35910209-2844-45c0-b099-f4d82878d54f/00261fda-4062-4096-81fd-8cf96b9034e8.jpg");
+            imageCrystal.attr("src", this.imageArray[i]);
 
             // This data attribute will be set equal to the array value.
             imageCrystal.attr("data-crystalvalue", arr[i]);
