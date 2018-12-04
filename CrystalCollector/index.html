@@ -3,41 +3,45 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Guess a Word Game</title>
+    <title>Crystal Collector</title>
     <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css" />
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script type="text/javascript" src="assets/js/Word.js"></script>
-    <script type="text/javascript" src="assets/js/WordGuessGame.js"></script>
+    <script type="text/javascript" src="assets/js/CrystalCollectorGame.js"></script>
 
 </head>
 
 <body>
     <header>
-        <h1>New Wave 80's Bands I like</h1>
+        <h1>Guess the number below using Crystals</h1>
     </header>
     <main class="container">
         <div class="gameHeader">
-            <h2 id="mainTitle">Press spacebar to start</h2>
-            <h2 id="currentGuess"></h2>
+            <h2 id="mainTitle">Current Number</h2>
+            <h2 id="currentNbrToGuess"></h2>
         </div>
         <div class="gameProgress">
             <section>
-                <div class="sectionTitle">Current Game</div>
+                <div class="sectionTitle">Game Stats</div>
                 <article>
-                    <p id="gameMessage">Press Spacebar to start</p>
+                    <p id="gameMessage"></p>
                     <div id="gameInfo">
-                        <div>Incorrect Guesses Remaining:<span id="incorrectGuessesLeft"></span></div>
-                        <div>All Letters Guessed: <span id="lettersGuessed"></span></div>
-                        <div>Incorrect Letters Guessed: <span id="lettersIncorrectlyGuessed"></span></div>
-                        <div>Correct Letters Guessed: </span><span id="lettersCorrectlyGuessed"></div>
+                        <div>Current Number to Guess:<span id="currentNbrToGuess"></span></div>
+                        <div>Current Guess: <span id="currentGuess"></span></div>
+                        <div>Total Guessed so far: <span id="totalGuessedSoFar"></span></div>
+                        <hr>
                     </div> <!-- Game Info  -->
                     <div id="victories">
                         <p>Number of Wins: <span id="nbrWins">0</span></p>
+                        <p>Number of Losses: <span id="nbrLosses">0</span></p>
+                        <p>Total Played: <span id="totalGames">0</span></p>
                     </div>
                 </article>
             </section>
             <aside>
-                <div class="sectionTitle" id="correctAnswer">80's Album Cover</div>
-                <img id="albumCover" src="assets/images/275x200WordGuessGame.png" width="275px" , height="200px">
+                <div class="sectionTitle">Total Guessed: <span id="totalGuessed"></span></div>
+                <div id="crystals">
+                </div>
             </aside>
         </div>
     </main>
