@@ -40,7 +40,6 @@ header {
 
 #currentGuess {
     text-align: center;
-    letter-spacing: 1em;
     margin-left: 1em;
 }
 
@@ -95,11 +94,6 @@ aside {
     margin: 2%;
 }
 
-#lettersGuessed {
-    letter-spacing: 1em;
-    text-transform: uppercase;
-}
-
 #victories {
     align-self: center;
     text-align: center;
@@ -124,9 +118,19 @@ aside {
   
 }
 
+#crystals {
+    display: flex;
+    flex-flow: row;
+    justify-items: center;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-around;    
+}
+
 .crystal-image {
     width: 100px;
     height: 100px;
+    padding: 2px;
   }
 
 
@@ -141,6 +145,4 @@ aside {
         width: 100%;
         margin: 1% 0 1% 0;
     }
-
-
 }

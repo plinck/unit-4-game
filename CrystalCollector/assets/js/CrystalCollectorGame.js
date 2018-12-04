@@ -42,15 +42,28 @@ class CrystalCollectorGame {
         this.displayGameStatus();
     }
 
-    makeAGuess(number) {
+    makeAGuess(guessNbr) {
         // Add the number guessed to the totalGuessed so far
+        this.currentGuess = parseInt(guessNbr, 10);
+        this.totalGuessedSoFar += this.currentGuess;
+
         // Compare to currentNbrToGuess
-        // Asses
+        if (this.totalGuessedSoFar == this.currentNbrToGuess) {
+            this.endGame(true); // winner
+        } else if (this.totalGuessedSoFar > this.currentNbrToGuess) {
+            this.endGame(false); // loser
+        }
+
+        // display
+        this.displayGameStatus();
     }
 
-    // create all the img crystals and display them
-    displayCrystals(crystalValues) {
-        for (var i in this.crystalValues) {
+    // create all the img crystals and display them in id
+    displayCrystals(arr) {
+        // clear the current batch of crystals
+        $("#crystals").empty();
+
+        for (var i in arr) {
             // For each iteration, we will create an imageCrystal
             var imageCrystal = $("<img>");
 
@@ -61,47 +74,53 @@ class CrystalCollectorGame {
             imageCrystal.attr("src", "http://cdn.playbuzz.com/cdn/35910209-2844-45c0-b099-f4d82878d54f/00261fda-4062-4096-81fd-8cf96b9034e8.jpg");
 
             // This data attribute will be set equal to the array value.
-            imageCrystal.attr("data-crystalvalue", crystalValues[i]);
+            imageCrystal.attr("data-crystalvalue", arr[i]);
 
             // Lastly, each crystal image (with all it classes and attributes) will get added to the page.
             $("#crystals").append(imageCrystal);
         }
     }
 
+
     // format html to display game
     displayGameStatus() {
 
-        $("#totalGames").innerHTML = this.totalGames;
-        $("#nbrWins").innerHTML = this.nbrWins;
-        $("#nbrLosses").innerHTML = this.nbrLosses;
+        $("#totalGames").text(this.totalGames);
+        $("#nbrWins").text(this.nbrWins);
+        $("#nbrLosses").text(this.nbrLosses);
         if (this.gameInProgress) {
-            $("#gameMessage").innerHTML = "playing ...";
+            $("#gameMessage").text("playing ...");
         }
 
         // One Game
-        $("#currentNbrToGuess").innerHTML = this.currentGuess;
-        $("#currentGuess").innerHTML = this.currentGuess;
-        $("#totalGuessedSoFar").innerHTML = this.currentGuess;
+        $("#currentNbrToGuess").text(this.currentNbrToGuess);
+        $("#currentGuess").text(this.currentGuess);
+        $("#totalGuessedSoFar").text(this.totalGuessedSoFar);
 
     }
 
     // End the current game
     endGame(winner) {
         var str;
+        this.gameInProgress = false;
 
         // add to total games played
-        // if won add to wins
-        // if lost add to losses
-        // display
-        this.gameInProgress = false;
-        this.displayGameStatus();
+        this.totalGames += 1;
 
         // Winner or loser messages and audio
         if (winner) {
             str = "You WON! Good Job ";
+            this.nbrWins += 1;
         } else {
             str = "You Lost";
+            this.nbrLosses += 1;
         }
+
+        // display
+        this.displayGameStatus();
+
+        alert(str);
+        this.reset();
     }
 
     // Print self/this
