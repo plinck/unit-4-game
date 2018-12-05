@@ -162,28 +162,32 @@ class StarWarsGame {
         this.displayGameStatus();
     }
 
-    // create all the img crystals and display them in id
+    // create all the img and display them in id
     displayAvailableCharacter(arr) {
         // clear the current batch of crystals
-        $("#characters").empty();
+        $("#characterCards").empty();
 
         for (var i in arr) {
-            // For each iteration, image
-            var image = $("<img>");
-
-            image.addClass("char-image");
-
-            // Each imageCrystal will be given a src link to the crystal image
-            image.attr("src", arr[i].characterImage);
-
-            // This data attribute will be set equal to the iterator which is index to char o.
-            image.attr("data-value", i);
-            image.css("width", "100px");
-            image.css("height", "100px");
-
-            // Lastly, each crystal image (with all it classes and attributes) will get added to the page.
-            $("#characters").append(image);
+            // Create a bootstrap card for each of the characters 
+            this.createCharacterCard(i, arr[i], "#characterCards");
         }
+    }
+
+    createCharacterCard(idx, characterObj, tagID = "#characterCards") {
+        var characterCard =  '<div class="card characterLink" data-value="' + idx + '">';
+
+        characterCard += '<h4 class="card-header">' + characterObj.characterName + '</h4>';
+        characterCard += '<img class="characterImage card-img border-0" src="' + characterObj.characterImage + '" alt="' + characterObj.characterName + '">';
+        characterCard += '<div class="card-img-overlay h-100 d-flex flex-column justify-content-end m-0 p-0">';
+        characterCard += '<h5 class="totalAttackPower text-center p-2 text-light">Power:' + characterObj.totalAttackPower + '</h5>';
+        characterCard += '<h5 class="healthPoints text-center p-2 text-light">Health' + characterObj.healthPoints + '</h5>';
+        characterCard += '</div>';
+        characterCard += '</div>';
+
+        var jqObj = $(characterCard);
+
+        $(tagID).append(jqObj);
+
     }
 
     // format html to display info for a character using card

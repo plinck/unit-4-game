@@ -14,7 +14,7 @@ $(document).ready(function () {
     var enemy = false;
 
     // must chain to parent to get all even on reset
-    $("#characters").on("click", ".char-image", function () {
+    $("#characterCards").on("click", ".characterLink", function () {
         // get value
         var characterNbr = ($(this).attr("data-value"));
 

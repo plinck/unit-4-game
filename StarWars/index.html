@@ -38,13 +38,13 @@
             <div class="col-sm-4">
                 <!-- Player -->
                 <div id="playerCard" class="card">
-                    <h4 class="card-header">Player
+                    <h4 class="card-header">Player - <span class="characterName"></span>
                     </h4>
                     <img class="characterImage card-img border-0" src="assets/images/character1.png" alt="Player">
                     <div class="card-img-overlay h-100 d-flex flex-column justify-content-end m-0 p-0">
-                        <h5 class="characterName text-center p-2 text-light">Name</h5>
-                        <h5 class="totalAttackPower text-center p-2 text-light">Power</h5>
-                        <h5 class="healthPoints text-center p-2 text-light">Health</h5>
+                        <h5 class="text-center p-2 text-light">Name: <span class="characterName"></span></h5>
+                        <h5 class="text-center p-2 text-light">Power:<span class="totalAttackPower"></span></h5>
+                        <h5 class="healthPoints text-center p-2 text-light">Health:<span class="healthPoints"></span></h5>
                     </div>
                 </div>
             </div>
@@ -57,13 +57,13 @@
             <div class="col-sm-4">
                 <!-- Enemy -->
                 <div id="enemyCard" class="card">
-                    <h4 class="card-header">Enemy
+                    <h4 class="card-header">Enemy - <span class="characterName"></span>
                     </h4>
                     <img class="characterImage card-img border-0" src="assets/images/character1.png" alt="Enemy">
                     <div class="card-img-overlay h-100 d-flex flex-column justify-content-end m-0 p-0">
-                        <h5 class="characterName text-center p-2 text-light">Name</h5>
-                        <h5 class="totalAttackPower text-center p-2 text-light">Power</h5>
-                        <h5 class="healthPoints text-center p-2 text-light">Health</h5>
+                        <h5 class="text-center p-2 text-light">Name: <span class="characterName"></span></h5>
+                        <h5 class="text-center p-2 text-light">Power:<span class="totalAttackPower"></span></h5>
+                        <h5 class="healthPoints text-center p-2 text-light">Health:<span class="healthPoints"></span></h5>
                     </div>
                 </div>
 
@@ -73,20 +73,23 @@
         <div class="row border">
             <aside class="col-md-8">
                 <div id="selectionTitle" class="bg-dark border text-center text-light mb-2">Click Player</div>
-                <div id="characters" class="d-flex justify-content-center">
+                <!-- <div id="characters" class="d-flex justify-content-center"> -->
+                <div id="characterCards" class="d-flex justify-content-center">
+                    <!-- One Character -->
+
                 </div>
             </aside>
 
             <section class="col-md-4">
-                <div class="bg-dark border text-center text-light mb-2">
-                    </divclass>Game Stats</div>
+                <div class="bg-dark border text-center text-light mb-2">Game Stats</div>
                 <article class="bg-light border">
                     <p id="gameMessage"></p>
                     <!-- Game Info  -->
                     <div id="victories">
-                        <p>Number of Wins: <span id="nbrWins">0</span></p>
-                        <p>Number of Losses: <span id="nbrLosses">0</span></p>
-                        <p>Total Played: <span id="totalGames">0</span></p>
+                        <p>Enemies Defeated: <span id="enemiesDefeated">0</span></p>
+                        <p>Total Wins: <span id="nbrWins">0</span></p>
+                        <p>Total Losses: <span id="nbrLosses">0</span></p>
+                        <p>Games Played: <span id="totalGames">0</span></p>
                     </div>
                 </article>
             </section>
