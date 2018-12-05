@@ -48,13 +48,11 @@ I added a portfolio item to both my responsive and bootstrap portfolio.  Both of
 
 * Need to fix crystlas with star wars images
 * Need to get a nice app icon for portfolio
-* Need to turn those images into cards with actual totals
-* Need to add enemies defeated to game status
-* Need to randomize health, power of each character
 * Need to create card list of enemies defeated at bottom of screen
 * Need to refactor code and put stuff in correct classes
 * Clean up design
 * Need to add to portfolios
+* Need to clarify what to do what attack power besides just increasing it on each attack - it hasnt saved my life :-)
 * ASK INSTRUCTORs - Why does the main (game.js) program have to be at end of body of html page vs in <head> tag
 
 - - -

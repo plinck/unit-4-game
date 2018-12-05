@@ -30,13 +30,10 @@ $(document).ready(function () {
             }
         }
 
-        if (player != undefined && enemy != undefined) {
-            // create attack button and set
-        }
     });
 
     $("#attack-btn").on("click", function () {
-        // Simulate two attacking each other
+        // Attack each other - it wont do anythng if player and enemy are not in place
         starWarsGame.attack();
 
 

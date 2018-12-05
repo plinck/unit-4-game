@@ -21,10 +21,11 @@ class StarWarsGame {
         this.totalGames = 0;
         this.nbrWins = 0;
         this.nbrLosses = 0;
-        this.enemiesDefeated = 0;
+        this.totalEnemiesDefeated = 0; // All GAmes
 
         this.currentPlayer = undefined;
         this.currentEnemy = undefined;
+        this.enemiesDefeated = 0;
 
         this.gameInProgress = false; // true if playing game, false if ended
 
@@ -33,11 +34,21 @@ class StarWarsGame {
         // Create the characters
         this.createCharacters();
 
-        // this.availablePlayers = this.characters;         // tracks characters available players
-        // this.availableEnemies = this.characters;         // tracks characters available enemies
     }
 
+    // Create each of the possible players and enemies
     createCharacters() {
+        let imageArray = ["./assets/images/character1.png",
+            "./assets/images/character2.png",
+            "./assets/images/character3.png",
+            "./assets/images/character4.png"
+        ];
+        let nameArray = ["Darth Vador",
+            "Darth Mole",
+            "Luke",
+            "The Girl"
+        ];
+
         // Initialize to empty array first
         this.characters = 0;
         this.characters = [];
@@ -45,13 +56,36 @@ class StarWarsGame {
         // create player objects
         // need to randomize them
         for (var i = 0; i < 4; i++) {
-            var characterTemp = new Character("character " + i, "./assets/images/character" + (i + 1) + ".png");
+            var characterTemp = new Character(nameArray[i], imageArray[i]);
 
             this.characters.push(characterTemp); // put object in array
         }
     }
 
-    // pick who is the player
+
+    // These change every time the game restarts - 
+    reset() {
+        this.gameInProgress = true; // true if playing game, false if ended
+
+        // Go back to choosing player
+        $("#selectionTitle").text("Select Player");
+
+        // 1.) available players
+        this.createCharacters();
+        this.displayAvailableCharacters(this.characters);
+
+        // Number enemies defeated
+        this.enemiesDefeated = 0;
+
+        // get rid of player and enemy
+        this.currentPlayer = undefined;
+        this.currentEnemy = undefined;
+
+        // Interact with the DOM
+        this.displayGameStatus();
+    }
+
+    // pick who is the player  - return true if successful, false if not
     pickAPlayer(playerIdx) {
         // if already picked cant pick again
         if (this.currentPlayer != undefined) {
@@ -70,12 +104,12 @@ class StarWarsGame {
         $("#selectionTitle").text("Now, select enemy");
 
         // Display
-        this.displayCharacter(this.currentPlayer, "#playerCard");
+        this.displaySingleCharacter(this.currentPlayer, "#playerCard");
 
         return true;
     }
 
-    // pick who is the enemy
+    // pick who is the enemy - return true if successful, false if not
     pickAnEnemy(enemyIdx) {
         // if already picked cant pick again
         if (this.currentEnemy != undefined) {
@@ -93,7 +127,7 @@ class StarWarsGame {
         }
 
         // Display
-        this.displayCharacter(this.currentEnemy, "#enemyCard");
+        this.displaySingleCharacter(this.currentEnemy, "#enemyCard");
         return true;
     }
 
@@ -108,62 +142,35 @@ class StarWarsGame {
             return;
         }
 
+        // Each time playher attacks, the also get attacked by enemy
         attacker.attack();
-        if (attacker.beenAttacked()) {
-            console.log("Attacker still alive");
-        }
+        attacker.beenAttacked();
 
+        // each time an enemy attacks, they also get attacked
         enemy.attack();
-        if (enemy.beenAttacked()) {
-            console.log("Enemy still alive");
+        enemy.beenAttacked();
+
+        // If both are dead, send a message
+        if (!attacker.characterIsAlive && !enemy.characterIsAlive) {
+            alert("You both died! Game over");
+            this.endMatch(true); // I guess you won since you killed them, but you also died
         } else {
-            // add to list of dead enemies
-        }
-        if (enemy.beenAttacked()) {
-            console.log("Enemy still alive");
-        } else {
-            // add to list of dead enemies
-        }
-
-
-        // If attacker is not alive, end game
-        if (!attacker.characterIsAlive) {
-            this.endGame(false); // lost
+            // If attacker (you, the player) is not alive, end game, enemy wins the match
+            if (!attacker.characterIsAlive) {
+                this.endMatch(false); // lost
+            }
+            // if enemy is dead, you win match and must face another enemy
+            if (!enemy.characterIsAlive) {
+                // Killed an enemy, must pick another
+                this.endMatch(true); // winner
+            }
         }
 
-        if (!enemy.characterIsAlive) {
-            // Killed an enemy, must pick another
-            this.endMatch(true); // winner
-        }
-
-        this.displayGameStatus();
-
-    }
-
-    // These change every time the game restarts - 
-    reset() {
-        this.gameInProgress = true; // true if playing game, false if ended
-
-        // Go back to choosing player
-        $("#selectionTitle").text("Select Player");
-
-        // 1.) available players
-        this.createCharacters();
-        this.displayAvailableCharacter(this.characters);
-
-        // Number enemies defeated
-        this.enemiesDefeated = 0;
-
-        // get rid of player and enemy
-        this.currentPlayer = undefined;
-        this.currentEnemy = undefined;
-
-        // Interact with the DOM
         this.displayGameStatus();
     }
 
     // create all the img and display them in id
-    displayAvailableCharacter(arr) {
+    displayAvailableCharacters(arr) {
         // clear the current batch of crystals
         $("#characterCards").empty();
 
@@ -173,8 +180,10 @@ class StarWarsGame {
         }
     }
 
+    // Since this is very "involved" html, I generate it on the fly using strings vs element by element
+    // It is easier to read and format that way.  I did it to create a card for each chartacter vs just an image
     createCharacterCard(idx, characterObj, tagID = "#characterCards") {
-        var characterCard =  '<div class="card characterLink" data-value="' + idx + '">';
+        var characterCard = '<div class="card characterLink" data-value="' + idx + '">';
 
         characterCard += '<h4 class="card-header">' + characterObj.characterName + '</h4>';
         characterCard += '<img class="characterImage card-img border-0" src="' + characterObj.characterImage + '" alt="' + characterObj.characterName + '">';
@@ -190,8 +199,8 @@ class StarWarsGame {
 
     }
 
-    // format html to display info for a character using card
-    displayCharacter(characterObj, characterTagID = "#playerCard") {
+    // format html to display info for a single character - the player or the enemy
+    displaySingleCharacter(characterObj, characterTagID = "#playerCard") {
 
         if (characterObj == undefined) {
             $(characterTagID + " .characterImage").attr("src", "./assets/images/blankCharacter.png");
@@ -210,6 +219,7 @@ class StarWarsGame {
     // format html to display game
     displayGameStatus() {
 
+        $("#enemiesDefeated").text(this.totalEnemiesDefeated);
         $("#totalGames").text(this.totalGames);
         $("#nbrWins").text(this.nbrWins);
         $("#nbrLosses").text(this.nbrLosses);
@@ -217,30 +227,31 @@ class StarWarsGame {
             $("#gameMessage").text("playing ...");
         }
 
-        this.displayCharacter(this.currentPlayer, "#playerCard");
-        this.displayCharacter(this.currentEnemy, "#enemyCard");
+        this.displaySingleCharacter(this.currentPlayer, "#playerCard");
+        this.displaySingleCharacter(this.currentEnemy, "#enemyCard");
     }
 
     // End the current match
     endMatch(winner) {
         var str;
 
-        // add to total games played
-        this.totalGames += 1;
-
         // Winner or loser messages and audio
         if (winner) {
-            str = "You WON! Good Job ";
+            str = "You WON the matchup!";
             // kill the enemy
             this.currentEnemy = undefined;
-            this.nbrWins += 1;
             this.enemiesDefeated += 1;
+            this.totalEnemiesDefeated += 1;
             if (this.enemiesDefeated >= 3) {
+                str = "You WON the matchup AND the game!";
                 this.endGame(true);
+            } else if (!this.currentPlayer.characterIsAlive) { // You won, but you are also dead
+                this.currentPlayer = undefined;
+                str = "You killed the enemy, but you are dead so you lose the game!";
+                this.endGame(false);
             }
         } else {
             str = "You Lost";
-            this.nbrLosses += 1;
             this.endGame(false);
         }
 
@@ -253,6 +264,15 @@ class StarWarsGame {
     // end the whole game - you lost or defeated all enemies
     endGame(winner) {
         this.gameInProgress = false;
+
+        // add to total GAMES played
+        this.totalGames += 1;
+
+        if (winner) {
+            this.nbrWins += 1; // Represents GAMES won, not matches
+        } else {
+            this.nbrLosses += 1; // Represents GAMES lost, not matches
+        }
 
         this.reset();
 
