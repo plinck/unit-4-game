@@ -10,27 +10,24 @@ $(document).ready(function () {
     // Get user input - must tie to parent ID to not lose on newly created images
     starWarsGame.reset();
 
-    var player;
-    var enemy;
-
+    var player = false;
+    var enemy = false;
 
     // must chain to parent to get all even on reset
     $("#characters").on("click", ".char-image", function () {
         // get value
         var characterNbr = ($(this).attr("data-value"));
 
-        if (player == undefined) { // pick a player
-            player = starWarsGame.pickAPlayer(characterNbr);
-            alert("Player: " + player);
-            // remove this from available list
-            $(this).remove();
-            // Put in Player
+        if (starWarsGame.currentPlayer == undefined) { // pick a player if not yet picked
+            if (starWarsGame.pickAPlayer(characterNbr)) {
+                // remove this from available list
+                $(this).remove();
+            }
         } else {
-            enemy = starWarsGame.pickAnEnemy(characterNbr);
-            alert("Enemy: " + enemy);
-            // remove this from available list
-            $(this).remove();
-            // Put in enemy
+            if (starWarsGame.pickAnEnemy(characterNbr)) {
+                // remove this from available list
+                $(this).remove();
+            }
         }
 
         if (player != undefined && enemy != undefined) {
@@ -38,9 +35,9 @@ $(document).ready(function () {
         }
     });
 
-    $("#attack-button").on("click", function () {
+    $("#attack-btn").on("click", function () {
         // Simulate two attacking each other
-        starWarsGame.attack(player, enemy);
+        starWarsGame.attack();
 
 
         // if player is dead - game over

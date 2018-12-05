@@ -11,8 +11,8 @@ const ENEMYTYPE = 2;
 class Character {
 
     // Create a character
-    constructor(name, imageRef, characterType = 0, healthPoints = 60, decrementHealthPoints = 1,
-         baseAttackPower = 6, totalAttackPower = 60, counterAttackPower = 60) {
+    constructor(name, imageRef, characterType = 0, healthPoints = 10, decrementHealthPoints = 1,
+         baseAttackPower = 5, totalAttackPower = 10, counterAttackPower = 10) {
 
         this.characterName = name;
         this.characterImage = imageRef;
