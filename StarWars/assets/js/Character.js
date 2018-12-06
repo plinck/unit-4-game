@@ -20,33 +20,41 @@ class Character {
         this.characterName = name;
         this.characterImage = imageRef;
         this.characterType = 0;                                     // 0=generic/unpicked, 1=player/attacker, 2=enemy
+        this.characterIsAlive = true;                               // true = alive, false = dead
 
-        rnd = Math.floor(Math.random() * 10 + 1);
+        rnd = Math.floor(Math.random() * 100 + 1);
         this.healthPoints = rnd;                                    // to health
-        this.decrementHealthPoints = 1;                             // how much health lost when attacked
 
-        rnd = Math.floor(Math.random() * 5 + 1);
+        rnd = Math.floor(Math.random() * 15 + 1);
         this.baseAttackPower = rnd;                                 // how much power gined when attacking
 
         rnd = Math.floor(Math.random() * 20 + 10);
         this.totalAttackPower = rnd;                                // total attack power
 
-        rnd = Math.floor(Math.random() * 15 + 5);
-        this.counterAttackPower = rnd;                              // total counter attack power
+        this.counterAttackPower =  this.totalAttackPower;           // total counter attack power
 
-        this.characterIsAlive = true;                               // true = alive, false = dead
     }
 
     // attack an enemy - can only be done if you are the player
-    attack() {
+    attack(character) {
+        // Players Attack - enemies do NOT
         if (this.characterType == PLAYERTYPE) {
-            this.totalAttackPower += this.baseAttackPower;      // only add power if you are player
+            character.reduceHealth(this.totalAttackPower);      // Reduce opponents health points by attack power
+            this.totalAttackPower += this.baseAttackPower;      // only add power if you are player - should it be before reducing their health?
         }
     }
 
+    counterAttack(character) {
+        // Enemies Counter Attack, players do not
+        if (this.characterType == ENEMYTYPE) {
+            character.reduceHealth(this.counterAttackPower);    // Reduce opponents health points by counter attack power
+        }
+    }
+
+
     // someone else attacks you
-    beenAttacked() {
-        this.healthPoints -= this.decrementHealthPoints;
+    reduceHealth(healthPointsToLose) {
+        this.healthPoints -= healthPointsToLose;        
         if (this.healthPoints <= 0 ) {
             this.characterIsAlive = false;                               
         } else {
@@ -59,13 +67,11 @@ class Character {
         // single instance of game
         console.log("characterName:" + this.characterName);
         console.log("characterImage:" + this.characterImage);
+        console.log("characterType:" + this.characterType);
 
         console.log("healthPoints:" + this.healthPoints);
-        console.log("decrementHealthPoints:" + this.decrementHealthPoints);
-
         console.log("baseAttackPower:" + this.baseAttackPower);
         console.log("totalAttackPower:" + this.totalAttackPower);
         console.log("counterAttackPower:" + this.counterAttackPower);
-        console.log("characterType:" + this.characterType);
     }
 }

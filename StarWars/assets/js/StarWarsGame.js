@@ -55,8 +55,8 @@ class StarWarsGame {
 
         // create player objects
         // need to randomize them
-        for (var i = 0; i < 4; i++) {
-            var characterTemp = new Character(nameArray[i], imageArray[i]);
+        for (let i = 0; i < 4; i++) {
+            let characterTemp = new Character(nameArray[i], imageArray[i]);
 
             this.characters.push(characterTemp); // put object in array
         }
@@ -133,8 +133,8 @@ class StarWarsGame {
 
     // Attack 
     attack() {
-        var attacker = this.currentPlayer;
-        var enemy = this.currentEnemy;
+        let attacker = this.currentPlayer;
+        let enemy = this.currentEnemy;
 
         if (attacker == undefined || enemy == undefined) {
             // Cant attack - no match
@@ -142,27 +142,34 @@ class StarWarsGame {
             return;
         }
 
-        // Each time playher attacks, the also get attacked by enemy
-        attacker.attack();
-        attacker.beenAttacked();
+        // Attack the enemy
+        attacker.attack(enemy);
+        // If enemy is dead, they can not attack back
+        if (!enemy.characterIsAlive) {
+            // Killed an enemy, must pick another
+            this.endMatch(true); // winner     
+            return; 
+        }
 
-        // each time an enemy attacks, they also get attacked
-        enemy.attack();
-        enemy.beenAttacked();
+        // Each time a player attacks, the enemy counterAttacks
+        enemy.counterAttack(attacker);
 
         // If both are dead, send a message
         if (!attacker.characterIsAlive && !enemy.characterIsAlive) {
             alert("You both died! Game over");
             this.endMatch(true); // I guess you won since you killed them, but you also died
+            return;
         } else {
             // If attacker (you, the player) is not alive, end game, enemy wins the match
             if (!attacker.characterIsAlive) {
                 this.endMatch(false); // lost
+                return;
             }
             // if enemy is dead, you win match and must face another enemy
             if (!enemy.characterIsAlive) {
                 // Killed an enemy, must pick another
                 this.endMatch(true); // winner
+                return;
             }
         }
 
@@ -174,7 +181,7 @@ class StarWarsGame {
         // clear the current batch of crystals
         $("#characterCards").empty();
 
-        for (var i in arr) {
+        for (let i in arr) {
             // Create a bootstrap card for each of the characters 
             this.createCharacterCard(i, arr[i], "#characterCards");
         }
@@ -183,17 +190,17 @@ class StarWarsGame {
     // Since this is very "involved" html, I generate it on the fly using strings vs element by element
     // It is easier to read and format that way.  I did it to create a card for each chartacter vs just an image
     createCharacterCard(idx, characterObj, tagID = "#characterCards") {
-        var characterCard = '<div class="card characterLink" data-value="' + idx + '">';
+        let characterCard = '<div class="card characterLink d-flex flex-column align-items-center" data-value="' + idx + '">';
 
-        characterCard += '<h4 class="card-header">' + characterObj.characterName + '</h4>';
-        characterCard += '<img class="characterImage card-img border-0" src="' + characterObj.characterImage + '" alt="' + characterObj.characterName + '">';
+        characterCard += '<h4 class="card-header w-100">' + characterObj.characterName + '</h4>';
+        characterCard += '<img class="characterImage card-img h-75 w-75 border-0" src="' + characterObj.characterImage + '" alt="' + characterObj.characterName + '">';
         characterCard += '<div class="card-img-overlay h-100 d-flex flex-column justify-content-end m-0 p-0">';
-        characterCard += '<h5 class="totalAttackPower text-center p-2 text-light">Power:' + characterObj.totalAttackPower + '</h5>';
-        characterCard += '<h5 class="healthPoints text-center p-2 text-light">Health' + characterObj.healthPoints + '</h5>';
+        characterCard += '<h5 class="totalAttackPower text-center p-2 text-light">Power: ' + characterObj.totalAttackPower + '</h5>';
+        characterCard += '<h5 class="healthPoints text-center p-2 text-light">Health: ' + characterObj.healthPoints + '</h5>';
         characterCard += '</div>';
         characterCard += '</div>';
 
-        var jqObj = $(characterCard);
+        let jqObj = $(characterCard);
 
         $(tagID).append(jqObj);
 
@@ -233,7 +240,7 @@ class StarWarsGame {
 
     // End the current match
     endMatch(winner) {
-        var str;
+        let str;
 
         // Winner or loser messages and audio
         if (winner) {
