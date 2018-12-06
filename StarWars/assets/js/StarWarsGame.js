@@ -43,10 +43,10 @@ class StarWarsGame {
             "./assets/images/character3.png",
             "./assets/images/character4.png"
         ];
-        let nameArray = ["Darth Vador",
-            "Darth Mole",
-            "Luke",
-            "The Girl"
+        let nameArray = ["Ben",
+            "Darth Vador",
+            "C3PO",
+            "Leah"
         ];
 
         // Initialize to empty array first
@@ -66,9 +66,6 @@ class StarWarsGame {
     // These change every time the game restarts - 
     reset() {
         this.gameInProgress = true; // true if playing game, false if ended
-
-        // Go back to choosing player
-        $("#selectionTitle").text("Select Player");
 
         // 1.) available players
         this.createCharacters();
@@ -101,10 +98,7 @@ class StarWarsGame {
             return false;
         }
 
-        $("#selectionTitle").text("Now, select enemy");
-
-        // Display
-        this.displaySingleCharacter(this.currentPlayer, "#playerCard");
+        this.displayGameStatus();
 
         return true;
     }
@@ -126,8 +120,8 @@ class StarWarsGame {
             return false;
         }
 
-        // Display
-        this.displaySingleCharacter(this.currentEnemy, "#enemyCard");
+        this.displayGameStatus();
+
         return true;
     }
 
@@ -148,7 +142,7 @@ class StarWarsGame {
         if (!enemy.characterIsAlive) {
             // Killed an enemy, must pick another
             this.endMatch(true); // winner     
-            return; 
+            return;
         }
 
         // Each time a player attacks, the enemy counterAttacks
@@ -192,11 +186,13 @@ class StarWarsGame {
     createCharacterCard(idx, characterObj, tagID = "#characterCards") {
         let characterCard = '<div class="card characterLink d-flex flex-column align-items-center" data-value="' + idx + '">';
 
-        characterCard += '<h4 class="card-header w-100">' + characterObj.characterName + '</h4>';
-        characterCard += '<img class="characterImage card-img h-75 w-75 border-0" src="' + characterObj.characterImage + '" alt="' + characterObj.characterName + '">';
-        characterCard += '<div class="card-img-overlay h-100 d-flex flex-column justify-content-end m-0 p-0">';
-        characterCard += '<h5 class="totalAttackPower text-center p-2 text-light">Power: ' + characterObj.totalAttackPower + '</h5>';
-        characterCard += '<h5 class="healthPoints text-center p-2 text-light">Health: ' + characterObj.healthPoints + '</h5>';
+        characterCard += '<h5 class="card-header w-100 text-center">' + characterObj.characterName + '</h5>';
+        characterCard += '<div class="card-body p-1 bg-secondary">';
+        characterCard += '<img class="characterImage bg-secondary img-fluid card-img border-0 p-0" src="' + characterObj.characterImage + '" alt="' + characterObj.characterName + '">';
+        characterCard += '<div class="card-img-overlay d-flex flex-column justify-content-end m-0 p-1">';
+        characterCard += '<h6 class="totalAttackPower text-center p-0 text-light">Power: ' + characterObj.totalAttackPower + '</h6>';
+        characterCard += '<h6 class="healthPoints text-center p-0 text-light">Health: ' + characterObj.healthPoints + '</h6>';
+        characterCard += '</div>';
         characterCard += '</div>';
         characterCard += '</div>';
 
@@ -232,6 +228,13 @@ class StarWarsGame {
         $("#nbrLosses").text(this.nbrLosses);
         if (this.gameInProgress) {
             $("#gameMessage").text("playing ...");
+        }
+        // Go back to choosing player
+        if (this.currentPlayer == undefined) {
+            $("#selectionTitle").text("Select Player");
+        } else {
+            $("#selectionTitle").text("Select Enemy");
+
         }
 
         this.displaySingleCharacter(this.currentPlayer, "#playerCard");
