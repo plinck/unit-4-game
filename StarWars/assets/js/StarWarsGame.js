@@ -22,6 +22,7 @@ class StarWarsGame {
         this.nbrWins = 0;
         this.nbrLosses = 0;
         this.totalEnemiesDefeated = 0; // All GAmes
+        this.defeatedCharacters = [];
 
         this.currentPlayer = undefined;
         this.currentEnemy = undefined;
@@ -73,6 +74,9 @@ class StarWarsGame {
 
         // Number enemies defeated
         this.enemiesDefeated = 0;
+        this.defeatedCharacters.length = 0;
+        this.defeatedCharacters = [];
+        this.displayDefeatedCharacters(this.defeatedCharacters);
 
         // get rid of player and enemy
         this.currentPlayer = undefined;
@@ -170,7 +174,7 @@ class StarWarsGame {
         this.displayGameStatus();
     }
 
-    // create all the img and display them in id
+    // create all the cards for all the characters
     displayAvailableCharacters(arr) {
         // clear the current batch of crystals
         $("#characterCards").empty();
@@ -178,6 +182,17 @@ class StarWarsGame {
         for (let i in arr) {
             // Create a bootstrap card for each of the characters 
             this.createCharacterCard(i, arr[i], "#characterCards");
+        }
+    }
+
+    // create all the cards for all the enemies defeated
+    displayDefeatedCharacters(arr) {
+        // clear the current batch of crystals
+        $("#characterDefeatedCards").empty();
+
+        for (let i in arr) {
+            // Create a bootstrap card for each of the characters 
+            this.createCharacterCard(i, arr[i], "#characterDefeatedCards");
         }
     }
 
@@ -239,6 +254,7 @@ class StarWarsGame {
 
         this.displaySingleCharacter(this.currentPlayer, "#playerCard");
         this.displaySingleCharacter(this.currentEnemy, "#enemyCard");
+        this.displayDefeatedCharacters(this.defeatedCharacters);
     }
 
     // End the current match
@@ -248,7 +264,9 @@ class StarWarsGame {
         // Winner or loser messages and audio
         if (winner) {
             str = "You WON the matchup!";
-            // kill the enemy
+            // Add enemy to list of those killed
+            this.defeatedCharacters.push(this.currentEnemy);
+            // Now, kill the enemy by making them undefined
             this.currentEnemy = undefined;
             this.enemiesDefeated += 1;
             this.totalEnemiesDefeated += 1;
