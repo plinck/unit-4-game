@@ -23,7 +23,7 @@ In this assignment, you'll create another fun and interactive game for web brows
 
 4. Set up your repository to deploy to Github Pages.
 
-5. Push the above changes to GitHub. 
+5. Push the above changes to GitHub.
 
 6. Choose whichever game you want to make from the choices below. The CrystalsCollector game is the recommended option, but if you are looking for an extra hard challenge then take a stab at the Star Wars exercise. (Note: Only choose the Star Wars Exercise if you are feeling very comfortable with the material covered in class. The Crystal Collector activity is plenty challenging enough!).
 
@@ -44,7 +44,7 @@ In this assignment, you'll create another fun and interactive game for web brows
    * Once the player selects an opponent, that enemy is moved to a `defender area`.
 
    * The player will now be able to click the `attack` button.
-     * Whenever the player clicks `attack`, their character damages the defender. The opponent will lose `HP` (health points). These points are displayed at the bottom of the defender's picture. 
+     * Whenever the player clicks `attack`, their character damages the defender. The opponent will lose `HP` (health points). These points are displayed at the bottom of the defender's picture.
      * The opponent character will instantly counter the attack. When that happens, the player's character will lose some of their `HP`. These points are shown at the bottom of the player character's picture.
 
 3. The player will keep hitting the attack button in an effort to defeat their opponent.
