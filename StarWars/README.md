@@ -46,7 +46,6 @@ I added a portfolio item to both my responsive and bootstrap portfolio.  Both of
 
 ## Bugs and known issues
 
-* Need to create card list of enemies defeated at bottom of screen
 * Add feedback when button press - audio and possibly image
 * Need to refactor code and put stuff in correct classes
 * Clean up design
