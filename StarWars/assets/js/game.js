@@ -10,12 +10,9 @@
 /*global alert:false */
 
 // In strict mode, we must declare the class before we can use it
-// This class is defined and declared in a separate file
-// So jshint reports erro "StarWarsGame' is not defined. (W117) [W117]"
-// But it actually is defined in different file that jshint cant figure out
-// unfortnatlely I need to ignore this warning using 
-// I could just ignore the warning but I dont
-/*global StarWarsGame: false */
+// Class has to export module and it needs importing to use it
+// none of this shit is working something isnt right
+// import {StarWarsGame} from './StarWarsGame.js';
 
 // Create game object to run the overall game
 var starWarsGame = new StarWarsGame();
