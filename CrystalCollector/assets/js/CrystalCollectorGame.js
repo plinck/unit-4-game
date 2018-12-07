@@ -52,8 +52,8 @@ class CrystalCollectorGame {
     reset() {
         this.gameInProgress = true; // true if playing game, false if ended
 
-        // 1.) pick a random number to guess
-        this.currentNbrToGuess = Math.floor(Math.random() * 120 + 19);
+        // 1.) pick a random number to guess 19-120
+        this.currentNbrToGuess = Math.floor(Math.random() * 102 + 19);
 
         // 2.) pick a random number for each of the crystals
         for (var i in this.crystalValues) {
