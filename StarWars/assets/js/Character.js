@@ -5,6 +5,13 @@
  * When it is an enemny ot has slightly different behavior than if its a player
  * For example, it does not gain attack points when it attacks.
  ********************************************************************************** */
+// Use strict to keep things sane and not crapp code
+"use strict";
+/*global $:false, jQuery:false */
+/*global document:false */
+/*global console:false */
+/*global alert:false */
+
 const PLAYERTYPE = 1;
 const ENEMYTYPE = 2;
 
@@ -37,6 +44,7 @@ class Character {
 
     // attack an enemy - can only be done if you are the player
     attack(character) {
+
         // Players Attack - enemies do NOT
         if (this.characterType == PLAYERTYPE) {
             character.reduceHealth(this.totalAttackPower);      // Reduce opponents health points by attack power

@@ -2,8 +2,22 @@
  * Main Program - game
  * main is the "view controller" that interacts with web page which is the view
  ********************************************************************************** */
+// Use strict to keep things sane and not crapp code
+"use strict";
+/*global $:false, jQuery:false */
+/*global document:false */
+/*global console:false */
+/*global alert:false */
 
-// Create CrystalCollectorGame game object to run the overall game
+// In strict mode, we must declare the class before we can use it
+// This class is defined and declared in a separate file
+// So jshint reports erro "StarWarsGame' is not defined. (W117) [W117]"
+// But it actually is defined in different file that jshint cant figure out
+// unfortnatlely I need to ignore this warning using 
+// I could just ignore the warning but I dont
+/*global StarWarsGame: false */
+
+// Create game object to run the overall game
 var starWarsGame = new StarWarsGame();
 
 $(document).ready(function () {

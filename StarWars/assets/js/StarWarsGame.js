@@ -13,6 +13,12 @@
  * deifine them outside the class and refer to tem with static methods in the class
  */
 
+// Use strict to keep things sane and not crapp code
+"use strict";
+/*global $:false, jQuery:false */
+/*global document:false */
+/*global console:false */
+/*global alert:false */
 
 class StarWarsGame {
     // Give default number of missed guesses to 5
