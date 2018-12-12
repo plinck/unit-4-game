@@ -4,8 +4,6 @@
 <head>
     <meta charset="UTF-8">
     <title>Star Wars</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
-        crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
         crossorigin="anonymous"></script>
@@ -19,97 +17,100 @@
 
 <body>
     <header>
-        <nav class="navbar navbar-expand navbar-dark bg-dark text-white border-bottom">
-            <!-- Create inner div to make left and right items line up properly with content -->
-            <div>
-                <img src="assets/images/275x200StarWars.png" width="60px" height="60px">
-            </div>
-            <div class="m-2">
-                <h5>Star Wars Game - Choose a fighter to begin</h5>
-            </div>
-        </nav>
+        <div>
+            <img class="imageNav" src="assets/images/275x200StarWars.png" , width="75px" , height="75px">
+        </div>
+        <div>
+            <h2>Star Wars Game - Begin by picking and player and enemy</h2>
+        </div>
     </header>
 
-    <main class="container bg-secondary mt-4 p-0 border rounded">
-        <div class="gameHeader row">
-            <div class="col-12">
-                <div class="bg-dark border text-center text-light m-0 rounded">
-                    <div class="border-bottom">
-                        <div class="row d-flex flex-row">
-                            <div class="col-3 text-center">Enemies Defeated</div>
-                            <div class="col-3 text-center">Total Wins</div>
-                            <div class="col-3 text-center">Total Losses</div>
-                            <div class="col-3 text-center">Games Played</div>
-                        </div>
-                        <div id="victories" class="row d-flex flex-row">
-                            <div class="col-3 text-center"><span id="enemiesDefeated">0</span></div>
-                            <div class="col-3 text-center"><span id="nbrWins">0</span></div>
-                            <div class="col-3 text-center"><span id="nbrLosses">0</span></div>
-                            <div class="col-3 text-center"><span id="totalGames">0</span></div>
-                        </div>
-                    </div>
-                    Current Battle
+    <!-- Main Section -->
+    <main class="main-container">
+        <!-- Main Game Content Container -->
+        <section class="gameHeader row">
+            <div class="section-header game-stats-header">
+                <div class="row game-stats">
+                    <div class="col-3">Enemies Defeated</div>
+                    <div class="col-3">Total Wins</div>
+                    <div class="col-3">Total Losses</div>
+                    <div class="col-3">Games Played</div>
+                </div>
+                <div id="victories" class="row game-stats">
+                    <div class="col-3"><span id="enemiesDefeated">0</span></div>
+                    <div class="col-3"><span id="nbrWins">0</span></div>
+                    <div class="col-3"><span id="nbrLosses">0</span></div>
+                    <div class="col-3"><span id="totalGames">0</span></div>
                 </div>
             </div>
-            <div class="col-sm-4">
-                <!-- Player -->
-                <div id="playerCard" class="card d-flex flex-column align-items-center bg-secondary">
-                    <h4 class="card-header w-100">Player - <span class="characterName"></span>
-                    </h4>
-                    <div class="card-body p-1 bg-secondary">
-                        <img class="characterImage card-img p-1 border-0" src="assets/images/character1.png" alt="Player">
-                        <div class="card-img-overlay d-flex flex-column justify-content-end m-0 p-0">
-                            <h5 class="text-center p-0 text-light">Name: <span class="characterName"></span></h5>
-                            <h5 class="text-center p-0 text-light">Power:<span class="totalAttackPower"></span></h5>
-                            <h5 class="healthPoints text-center p-0 text-light">Health:<span class="healthPoints"></span></h5>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-4 d-flex align-items-center justify-content-center">
-                <!-- Attack Button -->
-                <button id="attack-btn" class="btn btn-primary btn-lg">
-                    <span class="fa fa-flash"></span> Attack</button>
+        </section>
 
-            </div>
-            <div class="col-sm-4">
-                <!-- Enemy -->
-                <div id="enemyCard" class="card d-flex flex-column align-items-center bg-secondary">
-                    <h4 class="card-header w-100">Enemy - <span class="characterName"></span>
-                    </h4>
-                    <div class="card-body p-1 bg-secondary">
-                        <img class="characterImage card-img p-1 border-0" src="assets/images/character1.png" alt="Enemy">
-                        <div class="card-img-overlay h-100 d-flex flex-column justify-content-end m-0 p-0">
-                            <h5 class="text-center p-0 text-light">Name: <span class="characterName"></span></h5>
-                            <h5 class="text-center p-0 text-light">Power:<span class="totalAttackPower"></span></h5>
-                            <h5 class="healthPoints text-center p-0 text-light">Health:<span class="healthPoints"></span></h5>
+        <section class="row">
+            <div class="section-header row"><span>Current Battle</span></div>
+            <div class="battle row">
+                <div class="col-5 col-sm-12">
+                    <!-- Player -->
+                    <div id="playerCard" class="card">
+                        <div class="cardHeader">Player - <span class="characterName"></span>
+                        </div>
+                        <div class="cardBody">
+                            <img class="characterImage" src="assets/images/character1.png" alt="Player">
+                            <div class="imageBanner">
+                                <h5 class="imageBannerText">Name: <span class="characterName"></span></h5>
+                                <h5 class="imageBannerText">Power:<span class="totalAttackPower"></span></h5>
+                                <h5 class="imageBannerText">Health:<span class="healthPoints"></span></h5>
+                            </div>
                         </div>
                     </div>
                 </div>
+                <div class="col-2 col-sm-12 attack">
+                    <!-- Attack Button -->
+                    <button id="attack-btn"">
+                        <span class=" fa fa-flash"></span> Attack</button>
+
+                </div>
+                <div class="col-5 col-sm-12">
+                    <!-- Enemy -->
+                    <div id="enemyCard" class="card">
+                        <div class="cardHeader">Enemy - <span class="characterName"></span>
+                        </div>
+                        <div class="cardBody">
+                            <img class="characterImage" src="assets/images/character1.png" alt="Enemy">
+                            <div class="imageBanner">
+                                <h5 class="imageBannerText">Name: <span class="characterName"></span></h5>
+                                <h5 class="imageBannerText">Power:<span class="totalAttackPower"></span></h5>
+                                <h5 class="imageBannerText">Health:<span class="healthPoints"></span></h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        </div>
+
+        <section class="row">
+            <div id="selectionTitle" class="section-header row"><span>Select Player</span></div>
+
+            <div id="characterCards" class="characters row">
+                <!-- One Character -->
 
             </div>
-        </div>
+        </section>
+        <section class="row">
+            <div id="selectionTitle" class="section-header row"><span>Defeated Enemies</span></div>
 
-        <div class="row">
-            <section class="col-md-12">
-                <div id="selectionTitle" class="bg-dark border text-center text-light mb-2">Click Player</div>
-                <div id="characterCards" class="d-flex justify-content-center">
-                    <!-- One Character -->
-
+            <div id="defeatedEnemies" class="characters row">
+                <div id="characterDefeatedCards" class="">
                 </div>
-            </section>
-        </div>
-        <div class="row">
-            <section id="defeatedEnemies" class="col-md-12">
-                <div class="bg-dark border text-center text-light mb-2">Defeated Enemies</div>
-                <div id="characterDefeatedCards" class="d-flex justify-content-center">
-                </div>
-            </section>
+            </div>
 
-        </div>
+        </section>
+
 
     </main>
+
     <script type="text/javascript" src="assets/js/game.js"></script>
+    </script>
 
 </body>
 
