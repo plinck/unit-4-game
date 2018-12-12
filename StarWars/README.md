@@ -46,7 +46,8 @@ I added a portfolio item to both my responsive and bootstrap portfolio.  Both of
 
 ## Bugs and known issues
 
-* Add feedback when button press - audio and possibly image
+* Add feedback when button press - audio and possibly image firing
+* Convert to non-bootstrap since BS is a pain in the but
 * Make the attack button appear only if player and enemy are defined
 * Need to refactor code and put stuff in correct classes
 * Clean up design
