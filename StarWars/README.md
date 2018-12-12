@@ -46,12 +46,11 @@ I added a portfolio item to both my responsive and bootstrap portfolio.  Both of
 
 ## Bugs and known issues
 
-* Add feedback when button press - audio and possibly image firing
-* Convert to non-bootstrap since BS is a pain in the but
-* Make the attack button appear only if player and enemy are defined
+* Add audio fight feedback when button press - audio and possibly image firing
 * Need to refactor code and put stuff in correct classes
-* Clean up design
+* Clean up design make it look cooler
+* Make it look better on smaller screens -its responsive but not awesome on small
+* Make the attack button appear only if player and enemy are defined
 * Dealing with images - I want the **whole card** to be max size smaller and the image to fill its spaee but I cant get it to look right
-* ASK INSTRUCTORs - Why does the main (game.js) program have to be at end of body of html page vs in <head> tag
 
 - - -

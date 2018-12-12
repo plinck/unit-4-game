@@ -205,17 +205,18 @@ class StarWarsGame {
     // Since this is very "involved" html, I generate it on the fly using strings vs element by element
     // It is easier to read and format that way.  I did it to create a card for each chartacter vs just an image
     createCharacterCard(idx, characterObj, tagID = "#characterCards") {
-        let characterCard = '<div class="card characterLink d-flex flex-column align-items-center" data-value="' + idx + '">';
 
-        characterCard += '<h5 class="card-header w-100 text-center">' + characterObj.characterName + '</h5>';
-        characterCard += '<div class="card-body p-1 bg-secondary">';
-        characterCard += '<img class="characterImage bg-secondary img-fluid card-img border-0 p-0" src="' + characterObj.characterImage + '" alt="' + characterObj.characterName + '">';
-        characterCard += '<div class="card-img-overlay d-flex flex-column justify-content-end m-0 p-1">';
-        characterCard += '<h6 class="totalAttackPower text-center p-0 text-light">Power: ' + characterObj.totalAttackPower + '</h6>';
-        characterCard += '<h6 class="healthPoints text-center p-0 text-light">Health: ' + characterObj.healthPoints + '</h6>';
-        characterCard += '</div>';
-        characterCard += '</div>';
-        characterCard += '</div>';
+        let characterCard = `<div class="characterLink card" data-value="${idx}">`;
+
+        characterCard += `<div class="cardHeader">${characterObj.characterName}</div>`;
+        characterCard += `<div class="cardBody">`;
+        characterCard += `<img class="characterImage" src="${characterObj.characterImage}" alt="${characterObj.characterName}">`;
+        characterCard += `<div class="imageBanner">`;
+        characterCard += `<h6 class="totalAttackPower imageBannerText">Power: ${characterObj.totalAttackPower}</h6>`;
+        characterCard += `<h6 class="healthPoints imageBannerText">Health: ${characterObj.healthPoints}</h6>`;
+        characterCard += `</div>`;
+        characterCard += `</div>`;
+        characterCard += `</div>`;
 
         let jqObj = $(characterCard);
 
