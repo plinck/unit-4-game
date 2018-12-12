@@ -16,7 +16,7 @@
 </head>
 
 <body>
-    <header>
+    <!-- <header>
         <div>
             <img class="imageNav" src="assets/images/275x200StarWars.png" , width="75px" , height="75px">
         </div>
@@ -24,7 +24,7 @@
             <h2>Star Wars Game - Begin by picking and player and enemy</h2>
         </div>
     </header>
-
+ -->
     <!-- Main Section -->
     <main class="main-container">
         <!-- Main Game Content Container -->
@@ -48,36 +48,34 @@
         <section class="row">
             <div class="section-header row"><span>Current Battle</span></div>
             <div class="battle row">
-                <div class="col-5 col-sm-12">
+                <div class="col-5">
                     <!-- Player -->
                     <div id="playerCard" class="card">
-                        <div class="cardHeader">Player - <span class="characterName"></span>
+                        <div class="cardHeader">Player<br><span class="characterName"></span>
                         </div>
                         <div class="cardBody">
-                            <img class="characterImage" src="assets/images/character1.png" alt="Player">
+                            <img class="characterImage" src="assets/images/character1.png" alt="Pick Player">
                             <div class="imageBanner">
-                                <h5 class="imageBannerText">Name: <span class="characterName"></span></h5>
                                 <h5 class="imageBannerText">Power:<span class="totalAttackPower"></span></h5>
                                 <h5 class="imageBannerText">Health:<span class="healthPoints"></span></h5>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-2 col-sm-12 attack">
+                <div class="col-2 attack">
                     <!-- Attack Button -->
-                    <button id="attack-btn"">
+                    <button id="attack-btn">
                         <span class=" fa fa-flash"></span> Attack</button>
 
                 </div>
-                <div class="col-5 col-sm-12">
+                <div class="col-5">
                     <!-- Enemy -->
                     <div id="enemyCard" class="card">
-                        <div class="cardHeader">Enemy - <span class="characterName"></span>
+                        <div class="cardHeader">Enemy<br><span class="characterName"></span>
                         </div>
                         <div class="cardBody">
-                            <img class="characterImage" src="assets/images/character1.png" alt="Enemy">
+                            <img class="characterImage" src="assets/images/character1.png" alt="Pick Enemy">
                             <div class="imageBanner">
-                                <h5 class="imageBannerText">Name: <span class="characterName"></span></h5>
                                 <h5 class="imageBannerText">Power:<span class="totalAttackPower"></span></h5>
                                 <h5 class="imageBannerText">Health:<span class="healthPoints"></span></h5>
                             </div>

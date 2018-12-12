@@ -218,9 +218,7 @@ class StarWarsGame {
         characterCard += `</div>`;
         characterCard += `</div>`;
 
-        let jqObj = $(characterCard);
-
-        $(tagID).append(jqObj);
+        $(tagID).append(characterCard);
 
     }
 
@@ -229,9 +227,9 @@ class StarWarsGame {
 
         if (characterObj == undefined) {
             $(characterTagID + " .characterImage").attr("src", "./assets/images/blankCharacter.png");
-            $(characterTagID + " .characterName").text("Name");
-            $(characterTagID + " .totalAttackPower").text("Power");
-            $(characterTagID + " .healthPoints").text("Health");
+            $(characterTagID + " .characterName").text("");
+            $(characterTagID + " .totalAttackPower").text("");
+            $(characterTagID + " .healthPoints").text("");
         } else {
             $(characterTagID + " .characterImage").attr("src", characterObj.characterImage);
             $(characterTagID + " .characterName").text(characterObj.characterName);

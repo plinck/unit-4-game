@@ -28,7 +28,7 @@ header div {
 }
 
 .main-container {
-    margin: 10px;
+    margin: 20px;
     display: flex;
     flex-direction: column;
 }
@@ -78,23 +78,23 @@ section {
 .card {
     display: inline-block;
     position: relative;
-    border: 1px solid gray;
     border-radius: 8px;
     margin: 4px;
-    padding: 2px;
     background-color: rgba(0,0,0,1);
 }
 
 .cardHeader {
     padding: 8px;
-    margin: 2px 2px 0px 2px;
     color:black;
-    background-color: lightslategrey
+    background-color: lightslategrey;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
 }
 
 .cardBody {
     color: white;
-    margin: 0px 2px 2px 2px;
+    margin: 0;
+
 }
 
 /* Constrain img and put on bottom */
@@ -102,15 +102,18 @@ section {
     width: 175px;
     height: 175px;
     margin: 0px 0px 0 0;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+
 }
 
 /* The banner with the text is absolute so it can go on top of image */
 .imageBanner {
     position: absolute;
-    width: 100%;
+    width: 92.5%;
     padding: 5px 0 5px 0;
     height: auto;
-    margin: 0;
+    margin: 0px 5px 0px 5px;
     left: 0px;
     top: auto;
     bottom: 10px;
@@ -202,14 +205,18 @@ RESPONSIVENESS
     }
 
     .characterImage {
-        width: 100px;
-        height: 100px;
-        margin: 0px 0px 0 0;
+        width: 125px;
+        height: 125px;
     }
     
 }
 
-@media screen and (min-width: 641px) {
+@media screen and (min-width: 641px) and (max-width: 768px) {
+    .characterImage {
+        width: 150px;
+        height: 150px;
+    }
+
 }
 
 @media screen and (min-width: 981px) {
