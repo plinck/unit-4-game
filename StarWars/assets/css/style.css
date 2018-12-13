@@ -75,6 +75,11 @@ section {
     text-align: center;
 }
 
+.lastBattle {
+    font-size: .7em;
+    font-style: italic;
+}
+
 /* Each item has an image and a banner with text */
 .card {
     display: inline-block;
