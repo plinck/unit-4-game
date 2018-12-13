@@ -31,6 +31,7 @@ header div {
     margin: 20px;
     display: flex;
     flex-direction: column;
+    font-size: 1.7em;
 }
 
 section {
