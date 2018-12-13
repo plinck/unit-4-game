@@ -133,6 +133,7 @@ section {
 }
 
 #attack-btn {
+    visibility: hidden;
     padding: 6px 12px 6px 12px;
     background-color: blue;
     border: 0;

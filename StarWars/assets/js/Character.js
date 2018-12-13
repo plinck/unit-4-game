@@ -19,7 +19,6 @@ class Character {
 
     // Create a character
     constructor(name, imageRef) {
-
         // Local Vars
         let rnd;                                                    // generic random number
 

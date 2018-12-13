@@ -46,10 +46,8 @@ I added a portfolio item to both my responsive and bootstrap portfolio.  Both of
 
 ## Bugs and known issues
 
-* Add audio fight feedback when button press - audio and possibly image firing
+* Add audio fight feedback when attack pressed - audio and possibly image firing
 * Refactor code a bit
 * Clean up design make it look cooler
-* Make the attack button appear only if player and enemy are defined
-* Dealing with images - I want the **whole card** to be max size smaller and the image to fill its spaee but I cant get it to look right
 
 - - -

@@ -1,7 +1,7 @@
 /* **********************************************************************************
  * Class: StarWarsGame
  * Contains all the functionality to do a game.
- * The games methods() and properties are contained within this 
+ * The games' methods() and properties are contained within this class
  * Note the use of Capitalizing first letter of each word in a class name
  * in a standard practice in most OO languages like C#, C++, Swift,
  * Java, objective-C etc.
@@ -60,7 +60,7 @@ class StarWarsGame {
         this.characters = 0;
         this.characters = [];
 
-        // create player objects
+        // create player/character objects
         // need to randomize them
         for (let i = 0; i < 4; i++) {
             let characterTemp = new Character(nameArray[i], imageArray[i]);
@@ -68,7 +68,6 @@ class StarWarsGame {
             this.characters.push(characterTemp); // put object in array
         }
     }
-
 
     // These change every time the game restarts - 
     reset() {
@@ -254,7 +253,14 @@ class StarWarsGame {
             $("#selectionTitle").text("Select Player");
         } else {
             $("#selectionTitle").text("Select Enemy");
+        }
 
+        // Only show attack button if both are picked 
+        if ((this.currentPlayer != undefined) &&  (this.currentEnemy != undefined)) {
+            $("#attack-btn").css("visibility", "visible");
+            $("#selectionTitle").text("Attack!");
+        } else {
+            $("#attack-btn").css("visibility", "hidden");
         }
 
         this.displaySingleCharacter(this.currentPlayer, "#playerCard");
