@@ -46,7 +46,7 @@ class StarWarsGame {
         this.audioAttackStr = "./assets/sounds/Lightsaber Clash.mp3";
         this.audioCounterAttackStr = "./assets/sounds/Lightsaber Clash.mp3";
         this.audioDieStr = "./assets/sounds/Dying Robot.mp3";
-        this.audioEnemyDieStr = "./assets/sounds/Scream and Die Fx.mp3";
+        this.audioEnemyDieStr = "./assets/sounds/Female_Scream_Horror.mp3";
 
     }
 
