@@ -42,10 +42,11 @@ class StarWarsGame {
         this.createCharacters();
 
         // Audio for game
-        this.audioPick = new Audio("./assets/sounds/Lightsaber Turn On.mp3"); // Audio to start the game
-        this.audioAttack = new Audio("./assets/sounds/Lightsaber Clash.mp3"); // Audio if you got it correct
-        this.audioCounterAttack = new Audio("./assets/sounds/Lightsaber Clash.mp3"); // Audio if you got it correct
-        this.audioDie = new Audio("./assets/sounds/Lightsaber Turn Off.mp3"); // Audio if you got it wrong
+        this.audioPickStr = "./assets/sounds/Lightsaber Turn On.mp3";
+        this.audioAttackStr = "./assets/sounds/Lightsaber Clash.mp3";
+        this.audioCounterAttackStr = "./assets/sounds/Lightsaber Clash.mp3";
+        this.audioDieStr = "./assets/sounds/Dying Robot.mp3";
+        this.audioEnemyDieStr = "./assets/sounds/Scream and Die Fx.mp3";
 
     }
 
@@ -105,7 +106,8 @@ class StarWarsGame {
         }
 
         // pick player
-        this.audioPick.play();
+        let audioPick = new Audio(this.audioPickStr);
+        audioPick.play();
 
         if (this.characters[playerIdx].characterIsAlive) {
             this.characters[playerIdx].characterType = PLAYERTYPE;
@@ -128,7 +130,8 @@ class StarWarsGame {
         }
 
         // pick enemy
-        this.audioPick.play();
+        let audioPick = new Audio(this.audioPickStr);
+        audioPick.play();
 
         if (this.characters[enemyIdx].characterIsAlive) {
             this.characters[enemyIdx].characterType = ENEMYTYPE;
@@ -149,41 +152,43 @@ class StarWarsGame {
         let enemy = this.currentEnemy;
 
         if (attacker == undefined || enemy == undefined) {
-            // Cant attack - no match
+            // Cant attack - no battle
             console.log("Cant fight, need player and enemy");
             return;
         }
 
         // Attack the enemy
         attacker.attack(enemy);
-        this.audioAttack.play();
+        let audioAttack = new Audio(this.audioAttackStr);
+        audioAttack.play();
 
         // If enemy is dead, they can not attack back
         if (!enemy.characterIsAlive) {
             // Killed an enemy, must pick another
-            this.endMatch(true); // winner     
+            this.endBattle(true); // winner     
             return;
         }
 
         // Each time a player attacks, the enemy counterAttacks
         enemy.counterAttack(attacker);
-        this.audioCounterAttack.play();
+        let audioCounterAttack = new Audio(this.audioCounterAttackStr);
+        audioCounterAttack.play();
 
         // If both are dead, send a message
         if (!attacker.characterIsAlive && !enemy.characterIsAlive) {
             alert("You both died! Game over");
-            this.endMatch(true); // I guess you won since you killed them, but you also died
+            this.endBattle(true); // I guess you won since you killed them, but you also died
             return;
         } else {
-            // If attacker (you, the player) is not alive, end game, enemy wins the match
+            // If attacker (you, the player) is not alive, end game, enemy wins the battle
             if (!attacker.characterIsAlive) {
-                this.endMatch(false); // lost
+                this.endBattle(false); // lost
                 return;
             }
             // if enemy is dead, you win match and must face another enemy
             if (!enemy.characterIsAlive) {
                 // Killed an enemy, must pick another
-                this.endMatch(true); // winner
+                this.endBattle(true); // winner
                 return;
             }
         }
@@ -257,9 +262,7 @@ class StarWarsGame {
         $("#totalGames").text(this.totalGames);
         $("#nbrWins").text(this.nbrWins);
         $("#nbrLosses").text(this.nbrLosses);
-        if (this.gameInProgress) {
-            $("#gameMessage").text("playing ...");
-        }
+
         // Go back to choosing player
         if (this.currentPlayer == undefined) {
             $("#selectionTitle").text("Select Player");
@@ -280,16 +283,16 @@ class StarWarsGame {
         this.displayDefeatedCharacters(this.defeatedCharacters);
     }
 
-    // End the current match
-    endMatch(winner) {
+    // End the current battle
+    endBattle(winner) {
         let str;
 
-        // Someone died
-        this.audioDie.play();
 
         // Winner or loser messages and audio
         if (winner) {
-            str = "You WON the matchup!";
+            str = "You WON the battle!";
+            $("#gameMessage").text(str);
+
             // Add enemy to list of those killed
             this.defeatedCharacters.push(this.currentEnemy);
             // Now, kill the enemy by making them undefined
@@ -297,22 +300,41 @@ class StarWarsGame {
             this.enemiesDefeated += 1;
             this.totalEnemiesDefeated += 1;
             if (this.enemiesDefeated >= 3) {
-                str = "You WON the matchup AND the game!";
+                str = "You WON the battle AND the game!";
+                $("#gameMessage").text(str);
                 this.endGame(true);
             } else if (!this.currentPlayer.characterIsAlive) { // You won, but you are also dead
                 this.currentPlayer = undefined;
                 str = "You killed the enemy, but you are dead so you lose the game!";
+                $("#gameMessage").text(str);
                 this.endGame(false);
             }
         } else {
             str = "You Lost";
+            $("#gameMessage").text(str);
             this.endGame(false);
         }
 
         // display
         this.displayGameStatus();
 
-        alert(str);
+        // Wait for audio to complete before alert
+        if (winner) {
+            // Enemy died
+            let audioDie = new Audio(this.audioEnemyDieStr);
+            audioDie.play();
+            audioDie.onended = function () {
+                alert(str);
+            };
+        } else {
+            // You died
+            let audioDie = new Audio(this.audioDieStr);
+
+            audioDie.play();
+            audioDie.onended = function () {
+                alert(str);
+            };
+        }
     }
 
     // end the whole game - you lost or defeated all enemies
@@ -323,9 +345,9 @@ class StarWarsGame {
         this.totalGames += 1;
 
         if (winner) {
-            this.nbrWins += 1; // Represents GAMES won, not matches
+            this.nbrWins += 1; // Represents GAMES won, not battles
         } else {
-            this.nbrLosses += 1; // Represents GAMES lost, not matches
+            this.nbrLosses += 1; // Represents GAMES lost, not battles
         }
 
         this.reset();
