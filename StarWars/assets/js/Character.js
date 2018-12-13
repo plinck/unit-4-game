@@ -28,13 +28,13 @@ class Character {
         this.characterType = 0;                                     // 0=generic/unpicked, 1=player/attacker, 2=enemy
         this.characterIsAlive = true;                               // true = alive, false = dead
 
-        rnd = Math.floor(Math.random() * 100 + 1);
-        this.healthPoints = rnd;                                    // to health
+        rnd = Math.floor(Math.random() * 101 + 50);
+        this.healthPoints = rnd;                                    // total health
 
-        rnd = Math.floor(Math.random() * 15 + 1);
+        rnd = Math.floor(Math.random() * 6 + 1);
         this.baseAttackPower = rnd;                                 // how much power gined when attacking
 
-        rnd = Math.floor(Math.random() * 20 + 10);
+        rnd = Math.floor(Math.random() * 11 + 4);
         this.totalAttackPower = rnd;                                // total attack power
 
         this.counterAttackPower =  this.totalAttackPower;           // total counter attack power

@@ -219,10 +219,38 @@ RESPONSIVENESS
         width: 150px;
         height: 150px;
     }
-
 }
 
 @media screen and (min-width: 981px) {
 
+}
 
+/* iPhone X */
+@media only screen 
+and (device-width : 375px) 
+and (device-height : 812px) 
+and (-webkit-device-pixel-ratio : 3) { 
+    .main-container {
+        font-size: 2em;
+    }
+}
+
+/* iPhone 8 */
+@media only screen 
+and (device-width : 375px) 
+and (device-height : 667px) 
+and (-webkit-device-pixel-ratio : 2) { 
+    .main-container {
+        font-size: 2em;
+    }
+}
+
+/* iPhone 8 plus */
+@media only screen 
+and (device-width : 414px) 
+and (device-height : 736px) 
+and (-webkit-device-pixel-ratio : 3) { 
+    .main-container {
+        font-size: 2em;
+    }
 }

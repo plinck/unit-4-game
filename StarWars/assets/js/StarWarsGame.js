@@ -41,6 +41,12 @@ class StarWarsGame {
         // Create the characters
         this.createCharacters();
 
+        // Audio for game
+        this.audioPick = new Audio("./assets/sounds/Lightsaber Turn On.mp3"); // Audio to start the game
+        this.audioAttack = new Audio("./assets/sounds/Lightsaber Clash.mp3"); // Audio if you got it correct
+        this.audioCounterAttack = new Audio("./assets/sounds/Lightsaber Clash.mp3"); // Audio if you got it correct
+        this.audioDie = new Audio("./assets/sounds/Lightsaber Turn Off.mp3"); // Audio if you got it wrong
+
     }
 
     // Create each of the possible players and enemies
@@ -99,6 +105,8 @@ class StarWarsGame {
         }
 
         // pick player
+        this.audioPick.play();
+
         if (this.characters[playerIdx].characterIsAlive) {
             this.characters[playerIdx].characterType = PLAYERTYPE;
             this.currentPlayer = this.characters[playerIdx];
@@ -119,8 +127,9 @@ class StarWarsGame {
             return false;
         }
 
-
         // pick enemy
+        this.audioPick.play();
+
         if (this.characters[enemyIdx].characterIsAlive) {
             this.characters[enemyIdx].characterType = ENEMYTYPE;
             this.currentEnemy = this.characters[enemyIdx];
@@ -147,6 +156,8 @@ class StarWarsGame {
 
         // Attack the enemy
         attacker.attack(enemy);
+        this.audioAttack.play();
+
         // If enemy is dead, they can not attack back
         if (!enemy.characterIsAlive) {
             // Killed an enemy, must pick another
@@ -156,6 +167,7 @@ class StarWarsGame {
 
         // Each time a player attacks, the enemy counterAttacks
         enemy.counterAttack(attacker);
+        this.audioCounterAttack.play();
 
         // If both are dead, send a message
         if (!attacker.characterIsAlive && !enemy.characterIsAlive) {
@@ -256,7 +268,7 @@ class StarWarsGame {
         }
 
         // Only show attack button if both are picked 
-        if ((this.currentPlayer != undefined) &&  (this.currentEnemy != undefined)) {
+        if ((this.currentPlayer != undefined) && (this.currentEnemy != undefined)) {
             $("#attack-btn").css("visibility", "visible");
             $("#selectionTitle").text("Attack!");
         } else {
@@ -271,6 +283,9 @@ class StarWarsGame {
     // End the current match
     endMatch(winner) {
         let str;
+
+        // Someone died
+        this.audioDie.play();
 
         // Winner or loser messages and audio
         if (winner) {
