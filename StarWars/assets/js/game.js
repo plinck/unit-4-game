@@ -44,6 +44,11 @@ $(document).ready(function () {
     });
 
     $("#attack-btn").on("click", function () {
+
+        // this just animates the button when its clicked
+        var $button = document.querySelector('#attack-btn');
+        fancyBtn($button);
+
         // Attack each other - it wont do anythng if player and enemy are not in place
         starWarsGame.attack();
 

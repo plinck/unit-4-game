@@ -128,7 +128,7 @@ section {
 
 
 .attack {
-    display: inline;
+    display: block;
     align-self: center;
 }
 
@@ -146,6 +146,7 @@ section {
 #attack-btn:active {
     background-color: yellow;
     color: blue;
+    cursor: pointer;
 }
 
 
