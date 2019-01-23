@@ -8,6 +8,9 @@ Once the match is started, you click the `attack` button.  Whenever you click at
 
 You continue to hit attack until their `HP` goes to zero or below - or your `HP` goes to zero or below.  If their `HP` goes to zero or below, you win.  That enemy is removed from defender area and you pick the next enemuy to fight and do the same thing until you or all opponents are defeated.
 
+### Live Link
+* [Live Demo Link](https://plinck.github.io/unit-4-game/StarWars/)
+
 ### Notes
 
 * The `Health Points`, `Attack Power` and `Base Attack Power` are randomly gerenated at game start and differ for each character.
