@@ -11,6 +11,11 @@ You continue to hit attack until their `HP` goes to zero or below - or your `HP`
 ### Live Link
 * [Live Demo Link](https://plinck.github.io/unit-4-game/StarWars/)
 
+### Screen Shots
+* ![Sample](https://plinck.github.io/unit-4-game/StarWars/assets/images/page1.png)
+* ![Sample](https://plinck.github.io/unit-4-game/StarWars/assets/images/page2.png)
+* ![Sample](https://plinck.github.io/unit-4-game/StarWars/assets/images/275x200StarWars.png)
+
 ### Notes
 
 * The `Health Points`, `Attack Power` and `Base Attack Power` are randomly gerenated at game start and differ for each character.
